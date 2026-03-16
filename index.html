@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sistem Aplikasi Bro Fadlan</title>
+    <style>
+        /* Reset CSS Total - Biar Full Screen Tanpa Celah */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Mencegah scroll pada body utama */
+            background-color: #ffffff;
+            /* Mencegah text selection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Container Iframe */
+        .iframe-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Iframe Style */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Loading Screen Sederhana */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 0; /* Di belakang iframe */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
+
+    <div id="loader">Memuat Aplikasi...</div>
+
+    <div class="iframe-container">
+        <iframe 
+            src="https://script.google.com/macros/s/AKfycbxKZFLzGxDulJ6aXdPZHFBke1KwI9pjMBu8tFHsle5uDfGyMMbWkWmCUcaPBlb-ViggkA/exec" 
+            allow="geolocation *; microphone *; camera *; clipboard-write *" 
+            sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+            title="App Frame">
+        </iframe>
+    </div>
+
+    <script>
+        // Mencegah klik kanan
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        
+        // Mencegah shortcut keyboard untuk Developer Tools & View Source
+        document.onkeydown = function(e) {
+            // F12
+            if(e.keyCode == 123) { return false; }
+            // Ctrl+Shift+I / Mac: Cmd+Option+I (Inspect)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { return false; }
+            // Ctrl+Shift+C (Inspect Element)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { return false; }
+            // Ctrl+Shift+J (Console)
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { return false; }
+            // Ctrl+U / Mac: Cmd+Option+U (View Source)
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { return false; }
+            // Ctrl+S (Save Page)
+            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) { return false; }
+            // Ctrl+P (Print Page)
+            if(e.ctrlKey && e.keyCode == 'P'.charCodeAt(0)) { return false; }
+        }
+    </script>
+</body>
+</html>
